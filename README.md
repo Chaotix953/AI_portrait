@@ -17,38 +17,19 @@ AI_portrait/
 
 ### Prérequis
 
-- Docker et Docker Compose installés
+- Docker et docker-compose installés
 - NVIDIA GPU avec drivers (pour l'accélération GPU)
-- NVIDIA Container Toolkit installé
-- Au moins 8 Go de VRAM GPU recommandés
+- Au moins 12 Go de VRAM GPU recommandés
 
-### Installation automatique
+### 📦 Déploiement
 
 ```bash
 # Cloner le projet
 git clone <votre-repo>
 cd AI_portrait
 
-# Rendre les scripts exécutables
-chmod +x scripts/*.sh
-
-# Installation complète
-./scripts/setup.sh
-```
-
-### Démarrage manuel
-
-```bash
-# 1. Nettoyer la mémoire GPU (recommandé)
-./scripts/cleanup_gpu.sh
-
-# 2. Démarrer les services
+#lancer les conteneurs 
 docker-compose up --build
-
-# 3. Accéder à l'application
-# Frontend: http://localhost:9000
-# Backend API: http://localhost:8000
-# Documentation API: http://localhost:8000/docs
 ```
 
 ## 🐳 Services Docker
@@ -60,7 +41,6 @@ docker-compose up --build
 - **Endpoints:**
   - `GET /` - Status de l'API
   - `POST /generate` - Génération d'image
-  - `GET /memory-status` - État mémoire GPU
 
 ### Frontend (Application web)
 - **Port:** 9000
@@ -69,44 +49,6 @@ docker-compose up --build
   - Interface utilisateur pour upload d'images
   - Prévisualisation en temps réel
   - Téléchargement des résultats
-
-## ⚙️ Configuration
-
-### Variables d'environnement
-
-Copiez `.env.example` vers `.env` et modifiez selon vos besoins :
-
-```bash
-# GPU Configuration
-CUDA_VISIBLE_DEVICES=0
-PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-
-# Model Configuration
-MODEL_PATH=/app/models
-MODEL_NAME=stable-diffusion-xl
-
-# API Configuration
-API_HOST=0.0.0.0
-API_PORT=8000
-DEBUG=false
-
-# Frontend Configuration
-FRONTEND_PORT=9000
-API_URL=http://localhost:8000
-```
-
-## 📦 Déploiement
-
-### Production avec Docker
-
-```bash
-# Build des images de production
-docker-compose -f docker-compose.prod.yml build
-
-# Démarrage en production
-docker-compose -f docker-compose.prod.yml up -d
-```
-
 
 ## 📄 Licence
 
