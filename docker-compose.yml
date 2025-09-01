@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend       # dossier où se trouve ton Dockerfile backend
+    container_name: backend
+    ports:
+      - "8000:8000"            # exposer le backend si tu veux l’atteindre directement
+    networks:
+      - appnet
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all       # utilise tous les GPU disponibles
+              capabilities: [gpu]
+    environment:
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+      - CUDA_VISIBLE_DEVICES=0
+
+  frontend:
+    build:
+      context: ./frontend      # dossier où se trouve ton Dockerfile frontend
+    container_name: frontend
+    ports:
+      - "9000:80"              # accessible via http://localhost:9000
+    depends_on:
+      - backend
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge

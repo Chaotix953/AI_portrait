@@ -1,0 +1,109 @@
+# Environnement
+.env
+.env.local
+.env.prod
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Modèles AI (trop volumineux)
+backend/models/*.bin
+backend/models/*.safetensors
+backend/models/*.ckpt
+backend/models/*.pth
+*.model
+
+# Cache et temporaire
+backend/temp/
+backend/cache/
+frontend/dist/
+frontend/.nuxt/
+frontend/.output/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Node.js
+node_modules/
+package-lock.json
+yarn.lock
+.npm
+.eslintcache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Données sensibles
+*.key
+*.pem
+*.p12
+credentials.json
+secrets/
+
+# Résultats et uploads
+uploads/
+results/
+output/
+generated/
+*.jpg
+*.png
+*.jpeg
+*.gif
+!example.jpg
+!demo.png
+
+# Backup
+*.bak
+*.backup
+*.old
+
+# Coverage reports
+htmlcov/
+.coverage
+.pytest_cache/
